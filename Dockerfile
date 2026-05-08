@@ -1,6 +1,6 @@
 FROM node:20-alpine AS builder
 
-RUN apk add --no-cache python3 make g++ linux-headers
+RUN apk add --no-cache python3 py3-pip make g++ linux-headers
 
 WORKDIR /app
 COPY package.json .
@@ -13,7 +13,7 @@ RUN npm run build
 
 FROM node:20-alpine AS production
 
-RUN apk add --no-cache python3 make g++ linux-headers
+RUN apk add --no-cache python3 py3-pip make g++ linux-headers
 
 WORKDIR /app
 COPY package.json .
