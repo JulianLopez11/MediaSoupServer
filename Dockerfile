@@ -1,6 +1,6 @@
-FROM node:20-alpine AS builder
+FROM node:20-slim AS builder
 
-RUN apk add --no-cache python3 py3-pip make g++ linux-headers
+RUN apt-get update && apt-get install -y python3 python3-pip make g++ && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 COPY package.json .
@@ -11,9 +11,9 @@ COPY src/ ./src/
 RUN npm run build
 
 
-FROM node:20-alpine AS production
+FROM node:20-slim AS production
 
-RUN apk add --no-cache python3 py3-pip make g++ linux-headers
+RUN apt-get update && apt-get install -y python3 python3-pip make g++ && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 COPY package.json .
