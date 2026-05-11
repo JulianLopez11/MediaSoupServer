@@ -28,7 +28,9 @@ interface RoomData {
   consumers: Map<string, Consumer>;
 }
 
-const mediaCodecs: mediasoup.types.RtpCodecCapability[] = [
+// preferredPayloadType intentionally omitted — mediasoup assigns them internally;
+// explicit values cause "duplicated codec.preferredPayloadType" when RTX codecs are added.
+const mediaCodecs = [
   {
     kind: 'audio',
     mimeType: 'audio/opus',
@@ -51,7 +53,7 @@ const mediaCodecs: mediasoup.types.RtpCodecCapability[] = [
       'level-asymmetry-allowed': 1,
     },
   },
-];
+] as unknown as mediasoup.types.RtpCodecCapability[];
 
 let worker: Worker;
 const rooms = new Map<string, RoomData>();
