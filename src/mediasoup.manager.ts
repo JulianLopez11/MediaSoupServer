@@ -32,21 +32,18 @@ const mediaCodecs: mediasoup.types.RtpCodecCapability[] = [
   {
     kind: 'audio',
     mimeType: 'audio/opus',
-    preferredPayloadType: 100,
     clockRate: 48000,
     channels: 2,
   },
   {
     kind: 'video',
     mimeType: 'video/VP8',
-    preferredPayloadType: 101,
     clockRate: 90000,
     parameters: { 'x-google-start-bitrate': 1000 },
   },
   {
     kind: 'video',
     mimeType: 'video/H264',
-    preferredPayloadType: 102,
     clockRate: 90000,
     parameters: {
       'packetization-mode': 1,
